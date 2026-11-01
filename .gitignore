@@ -1,0 +1,10 @@
+venv/
+venv2/
+.env
+node_modules/
+data/pdfs
+data/docs
+.vscode/
+.chainlit/
+hg_chroma_db/
+.langgraph_api

@@ -1,0 +1,221 @@
+{
+  "dataset_name": "inpsio_rag_eval_v1",
+  "language": "it",
+  "purpose": "Small manually grounded evaluation set for retrieval and answer faithfulness. This is a prototype set, not legal advice or a complete coverage of INPS rules.",
+  "documents_used": [
+    "16761_Circolare-numero-54-del-13-05-2026.pdf",
+    "16770_Circolare-numero-55-del-14-05-2026.pdf"
+  ],
+  "documents_not_used": [
+    {
+      "filename": "16759_Circolare-numero-53-del-07-05-2026_Allegato-n-1.pdf",
+      "reason": "Image-only; text extraction returned no usable text. The main Circular 53 was not included, so this attachment lacks its explanatory context."
+    },
+    {
+      "filename": "16762_Circolare-numero-54-del-13-05-2026_Allegato-n-1.pdf",
+      "reason": "Image-only; text extraction returned no usable text. The circular references this municipality list, but no municipality-specific questions were generated from the scan."
+    }
+  ],
+  "items": [
+    {
+      "id": "isu_001",
+      "type": "answerable",
+      "question": "Per l’ammortizzatore unico previsto dalla circolare 54, quali sono i due casi principali per i lavoratori subordinati privati non agricoli?",
+      "reference_answer": "La misura riguarda sia chi, indipendentemente da dove risiede, non può lavorare perché la sede del datore di lavoro è in un Comune interessato e l’attività è stata sospesa, sia chi risiede o è domiciliato in uno dei Comuni interessati e non può raggiungere il posto di lavoro, anche se il datore si trova altrove.",
+      "gold_sources": [{"filename": "16761_Circolare-numero-54-del-13-05-2026.pdf", "pages": [3]}],
+      "key_facts": ["sede del datore nei Comuni dell’Allegato 1", "residenza o domicilio nei Comuni dell’Allegato 1", "impossibilità di lavorare o raggiungere il lavoro"]
+    },
+    {
+      "id": "isu_002",
+      "type": "answerable",
+      "question": "Quali condizioni possono giustificare l’impossibilità di recarsi al lavoro secondo la circolare 54?",
+      "reference_answer": "La circolare elenca un provvedimento normativo o amministrativo collegato all’emergenza, l’interruzione o impraticabilità delle vie di comunicazione, l’inutilizzabilità dei trasporti, l’inagibilità dell’abitazione, le condizioni di salute di familiari conviventi e altri eventi collegati all’emergenza che abbiano richiesto la presenza altrove.",
+      "gold_sources": [{"filename": "16761_Circolare-numero-54-del-13-05-2026.pdf", "pages": [3, 4]}],
+      "key_facts": ["sei cause", "eventi collegati all’emergenza"]
+    },
+    {
+      "id": "isu_003",
+      "type": "answerable",
+      "question": "Quali prove deve conservare il datore di lavoro per documentare l’impedimento del lavoratore?",
+      "reference_answer": "Per la causa basata su un provvedimento normativo o amministrativo, il datore indica nella domanda l’esistenza e gli estremi del provvedimento. Per le altre cause da interruzione delle vie di comunicazione alle ulteriori circostanze elencate, acquisisce dal lavoratore una dichiarazione di responsabilità sulla motivazione e la conserva ai fini dei controlli.",
+      "gold_sources": [{"filename": "16761_Circolare-numero-54-del-13-05-2026.pdf", "pages": [4]}],
+      "key_facts": ["estremi del provvedimento per la prima causa", "dichiarazione del lavoratore per le altre cause", "conservazione per controlli"]
+    },
+    {
+      "id": "isu_004",
+      "type": "answerable",
+      "question": "L’ammortizzatore unico è cumulabile con CIGO, FIS o CISOA per gli stessi lavoratori e periodi?",
+      "reference_answer": "No. È incompatibile con i trattamenti di integrazione salariale indicati dalla circolare per gli stessi periodi. Se una domanda ordinaria non è ancora stata autorizzata, il datore può chiederne con urgenza l’annullamento e poi presentare la domanda per l’ammortizzatore unico.",
+      "gold_sources": [{"filename": "16761_Circolare-numero-54-del-13-05-2026.pdf", "pages": [4, 5]}],
+      "key_facts": ["incompatibile per stessi periodi", "annullamento solo se non autorizzata", "presentare poi nuova domanda"]
+    },
+    {
+      "id": "isu_005",
+      "type": "answerable",
+      "question": "Qual è il massimale mensile lordo dell’ammortizzatore unico per il 2026?",
+      "reference_answer": "La circolare indica un trattamento massimo lordo di 1.423,69 euro per il 2026.",
+      "gold_sources": [{"filename": "16761_Circolare-numero-54-del-13-05-2026.pdf", "pages": [5]}],
+      "key_facts": ["1.423,69 euro", "lordo", "2026"]
+    },
+    {
+      "id": "isu_006",
+      "type": "answerable",
+      "question": "Qual è il periodo massimo indennizzabile e quante giornate spettano ai lavoratori non agricoli?",
+      "reference_answer": "Il periodo complessivo considerato va dal 18 gennaio al 30 aprile 2026. Per i lavoratori non agricoli impossibilitati a lavorare perché l’unità produttiva si trova nei Comuni interessati il limite è fino a 90 giornate; per chi risiede o è domiciliato nei Comuni interessati e non riesce a recarsi al lavoro il limite è fino a 15 giornate.",
+      "gold_sources": [{"filename": "16761_Circolare-numero-54-del-13-05-2026.pdf", "pages": [5, 6]}],
+      "key_facts": ["18 gennaio–30 aprile 2026", "90 giornate per sospensione presso unità nei Comuni", "15 giornate per impossibilità a recarsi al lavoro"]
+    },
+    {
+      "id": "isu_007",
+      "type": "answerable",
+      "question": "Come si calcolano le giornate indennizzabili per un lavoratore agricolo assunto dopo il 18 gennaio 2026 e senza rapporto attivo a quella data?",
+      "reference_answer": "Per il caso del lavoratore agricolo senza rapporto attivo al 18 gennaio, assunto entro il 30 aprile e impossibilitato a lavorare presso un datore operante in un Comune interessato, il periodo è pari alle giornate lavorate nell’anno precedente meno quelle lavorate nell’anno in corso, fino a un massimo di 90 giornate. La misura decorre dalla data di assunzione.",
+      "gold_sources": [{"filename": "16761_Circolare-numero-54-del-13-05-2026.pdf", "pages": [3, 6]}],
+      "key_facts": ["giornate anno precedente meno anno in corso", "massimo 90", "decorrenza dalla data di assunzione"]
+    },
+    {
+      "id": "isu_008",
+      "type": "answerable",
+      "question": "Entro quando si presentano le domande per l’ammortizzatore unico e il termine è decadenziale?",
+      "reference_answer": "Le domande possono essere presentate dal 14 aprile 2026 ed è previsto il termine del 31 maggio 2026. La circolare precisa che, secondo il testo vigente, tale termine non è decadenziale, ma raccomanda l’invio urgente per favorire il pagamento tempestivo.",
+      "gold_sources": [{"filename": "16761_Circolare-numero-54-del-13-05-2026.pdf", "pages": [7]}],
+      "key_facts": ["domande dal 14 aprile 2026", "31 maggio 2026", "termine non decadenziale"]
+    },
+    {
+      "id": "isu_009",
+      "type": "answerable",
+      "question": "Da quale piattaforma i datori di lavoro privati non agricoli presentano la domanda per l’ammortizzatore unico?",
+      "reference_answer": "La domanda si presenta telematicamente tramite la piattaforma OMNIA IS, selezionando la procedura OMNIA integrazioni salariali e la prestazione “domanda ISU”.",
+      "gold_sources": [{"filename": "16761_Circolare-numero-54-del-13-05-2026.pdf", "pages": [8]}],
+      "key_facts": ["OMNIA IS", "OMNIA integrazioni salariali", "domanda ISU"]
+    },
+    {
+      "id": "isu_010",
+      "type": "answerable",
+      "question": "Quale documentazione va allegata quando la domanda è presentata da un intermediario autorizzato per l’impossibilità del lavoratore a recarsi al lavoro?",
+      "reference_answer": "Per l’intermediario la circolare prevede la dichiarazione dell’Allegato 6 quando l’impedimento deriva da un provvedimento normativo o amministrativo; negli altri casi va allegata la dichiarazione dell’Allegato 7, con le specifiche condizioni impeditive riferite ai lavoratori.",
+      "gold_sources": [{"filename": "16761_Circolare-numero-54-del-13-05-2026.pdf", "pages": [10]}],
+      "key_facts": ["Allegato 6 per provvedimento", "Allegato 7 per le altre cause"]
+    },
+    {
+      "id": "isu_011",
+      "type": "answerable",
+      "question": "La misura è collegata alla contribuzione figurativa?",
+      "reference_answer": "Sì. La contribuzione figurativa è accreditata secondo le regole previste per le integrazioni salariali dall’articolo 6 del decreto legislativo 148/2015.",
+      "gold_sources": [{"filename": "16761_Circolare-numero-54-del-13-05-2026.pdf", "pages": [10, 11]}],
+      "key_facts": ["sì", "regole dell’articolo 6 del d.lgs. 148/2015"]
+    },
+    {
+      "id": "bonus_001",
+      "type": "answerable",
+      "question": "Quali sono le condizioni temporali e anagrafiche di base del Bonus Giovani 2026 per l’esonero fino a 24 mesi?",
+      "reference_answer": "L’assunzione deve essere a tempo indeterminato e avvenire dal 1° gennaio al 31 dicembre 2026. Il lavoratore deve avere meno di 35 anni alla data dell’assunzione ed essere privo di un impiego regolarmente retribuito da almeno 24 mesi; la circolare descrive anche un caso alternativo di 12 mesi associato a specifiche categorie di svantaggio.",
+      "gold_sources": [{"filename": "16770_Circolare-numero-55-del-14-05-2026.pdf", "pages": [2, 4]}],
+      "key_facts": ["contratto a tempo indeterminato", "assunzione nel 2026", "meno di 35 anni", "24 mesi senza impiego regolarmente retribuito"]
+    },
+    {
+      "id": "bonus_002",
+      "type": "answerable",
+      "question": "Quali sono le categorie di lavoratori svantaggiati indicate per il percorso con almeno 12 mesi senza impiego regolarmente retribuito e durata massima di 24 mesi?",
+      "reference_answer": "Oltre ai 12 mesi senza impiego regolarmente retribuito e all’età inferiore a 35 anni, il lavoratore deve appartenere a una delle categorie del regolamento UE 651/2014 richiamate dalla circolare: lettere c), e), f) o g), tra cui alcune persone senza qualifica secondaria/professionale o senza primo impiego, adulti soli con persone a carico, persone del genere sottorappresentato in determinati settori e persone appartenenti a minoranze etniche con specifiche necessità formative o lavorative.",
+      "gold_sources": [{"filename": "16770_Circolare-numero-55-del-14-05-2026.pdf", "pages": [2, 3, 4]}],
+      "key_facts": ["12 mesi", "lettere c/e/f/g", "età inferiore a 35", "24 mesi di esonero"]
+    },
+    {
+      "id": "bonus_003",
+      "type": "answerable",
+      "question": "Qual è il massimale mensile dell’esonero standard e quale quello per una sede di lavoro nella ZES unica?",
+      "reference_answer": "Il massimale standard è 500 euro al mese per lavoratore; per le assunzioni presso una sede o unità produttiva nelle regioni della ZES unica il massimale è 650 euro al mese. In entrambi i casi l’esonero è pari al 100% dei contributi previdenziali datoriali ammissibili, con esclusione dei premi e contributi INAIL.",
+      "gold_sources": [{"filename": "16770_Circolare-numero-55-del-14-05-2026.pdf", "pages": [3, 7, 8]}],
+      "key_facts": ["500 euro mensili standard", "650 euro mensili ZES", "100% contributi datoriali ammissibili", "INAIL escluso"]
+    },
+    {
+      "id": "bonus_004",
+      "type": "answerable",
+      "question": "Quali regioni sono comprese nella ZES unica ai fini del massimale maggiorato?",
+      "reference_answer": "Abruzzo, Molise, Campania, Basilicata, Sicilia, Puglia, Calabria, Sardegna, Marche e Umbria.",
+      "gold_sources": [{"filename": "16770_Circolare-numero-55-del-14-05-2026.pdf", "pages": [3, 5, 6]}],
+      "key_facts": ["Abruzzo", "Molise", "Campania", "Basilicata", "Sicilia", "Puglia", "Calabria", "Sardegna", "Marche", "Umbria"]
+    },
+    {
+      "id": "bonus_005",
+      "type": "answerable",
+      "question": "Per quanto tempo dura l’esonero per i soggetti molto svantaggiati e per quanto per i soggetti svantaggiati?",
+      "reference_answer": "La durata massima è di 24 mesi per i soggetti molto svantaggiati contemplati dai percorsi dei commi 1 e 3, mentre è di 12 mesi per i soggetti svantaggiati ammessi ai sensi del comma 4. Nella ZES il massimale mensile può essere maggiore, ma la durata dipende sempre dalla categoria del lavoratore.",
+      "gold_sources": [{"filename": "16770_Circolare-numero-55-del-14-05-2026.pdf", "pages": [6, 7]}],
+      "key_facts": ["24 mesi molto svantaggiati", "12 mesi svantaggiati", "massimale ZES non cambia la durata"]
+    },
+    {
+      "id": "bonus_006",
+      "type": "answerable",
+      "question": "Quali rapporti di lavoro sono esclusi dal Bonus Giovani 2026?",
+      "reference_answer": "Sono esclusi i rapporti di lavoro domestico e l’apprendistato. La circolare inoltre chiarisce che l’agevolazione non si applica alle assunzioni a tempo determinato né alla trasformazione a tempo indeterminato di un rapporto a termine già in essere; sono esclusi anche i rapporti intermittenti e il lavoro occasionale.",
+      "gold_sources": [{"filename": "16770_Circolare-numero-55-del-14-05-2026.pdf", "pages": [2, 5]}],
+      "key_facts": ["domestico escluso", "apprendistato escluso", "tempo determinato e trasformazioni escluse", "intermittente e occasionale esclusi"]
+    },
+    {
+      "id": "bonus_007",
+      "type": "answerable",
+      "question": "Quali condizioni generali deve rispettare il datore di lavoro per fruire dell’esonero?",
+      "reference_answer": "Tra le condizioni indicate: regolarità contributiva attestata secondo le regole DURC, assenza delle violazioni ostative in materia di lavoro e sicurezza, rispetto dei contratti collettivi applicabili e dei principi generali sugli incentivi all’assunzione. Restano inoltre le condizioni specifiche della misura, tra cui età, requisiti di svantaggio e, per i casi previsti, incremento occupazionale netto.",
+      "gold_sources": [{"filename": "16770_Circolare-numero-55-del-14-05-2026.pdf", "pages": [9, 10, 13]}],
+      "key_facts": ["DURC", "violazioni lavoro e sicurezza", "contratti collettivi", "condizioni specifiche"]
+    },
+    {
+      "id": "bonus_008",
+      "type": "answerable",
+      "question": "Quando è richiesto l’incremento occupazionale netto e come viene calcolato in sintesi?",
+      "reference_answer": "È richiesto per le assunzioni di soggetti svantaggiati o molto svantaggiati cui si applica la condizione prevista dall’articolo 2, comma 6. Si confronta il numero di occupati rilevato in ciascun mese con la media dei lavoratori occupati nei 12 mesi precedenti; per i part-time si pondera in base alle ore pattuite rispetto al tempo pieno.",
+      "gold_sources": [{"filename": "16770_Circolare-numero-55-del-14-05-2026.pdf", "pages": [3, 13, 14]}],
+      "key_facts": ["solo casi cui si applica il comma 6", "media dei 12 mesi precedenti", "ponderazione part-time"]
+    },
+    {
+      "id": "bonus_009",
+      "type": "answerable",
+      "question": "Come si riproporziona il massimale quando il rapporto inizia o termina durante il mese?",
+      "reference_answer": "La circolare indica 16,12 euro per ogni giorno di fruizione per il massimale standard di 500 euro e 20,96 euro al giorno per il massimale ZES di 650 euro.",
+      "gold_sources": [{"filename": "16770_Circolare-numero-55-del-14-05-2026.pdf", "pages": [7]}],
+      "key_facts": ["16,12 euro/giorno standard", "20,96 euro/giorno ZES"]
+    },
+    {
+      "id": "bonus_010",
+      "type": "answerable",
+      "question": "Che cosa succede al massimale maggiorato ZES se il lavoratore viene trasferito fuori dalle regioni ZES?",
+      "reference_answer": "Dal mese di paga successivo al trasferimento fuori dalle regioni della ZES unica, il massimale mensile dell’agevolazione scende a 500 euro.",
+      "gold_sources": [{"filename": "16770_Circolare-numero-55-del-14-05-2026.pdf", "pages": [12]}],
+      "key_facts": ["da 650 a 500 euro", "mese paga successivo al trasferimento"]
+    },
+    {
+      "id": "abstain_001",
+      "type": "unanswerable",
+      "question": "In quale giorno preciso l’INPS accrediterà l’ammortizzatore unico sul conto di un lavoratore?",
+      "reference_answer": "I documenti forniti non indicano una data individuale di accredito. La risposta corretta deve dichiarare che l’informazione non è disponibile in questo corpus, senza inventare una data.",
+      "gold_sources": [],
+      "key_facts": ["data individuale di pagamento non specificata", "astenersi"]
+    },
+    {
+      "id": "abstain_002",
+      "type": "unanswerable",
+      "question": "Un lavoratore con una specifica retribuzione e situazione familiare riceverà sicuramente il Bonus Giovani? Calcola anche il suo importo netto in busta paga.",
+      "reference_answer": "Non è possibile determinare l’idoneità individuale né calcolare un importo netto dai soli documenti forniti: mancano i dati del rapporto, la verifica dei requisiti e il calcolo contributivo/fiscale individuale. La circolare descrive massimali dell’esonero a favore del datore di lavoro, non un importo netto garantito al lavoratore.",
+      "gold_sources": [],
+      "key_facts": ["mancano dati individuali", "esonero datoriale non equivale a netto garantito", "astenersi"]
+    },
+    {
+      "id": "abstain_003",
+      "type": "unanswerable",
+      "question": "Qual è l’elenco completo dei Comuni dell’Allegato 1 alla circolare 54 e il mio Comune è incluso?",
+      "reference_answer": "Non rispondere con un elenco o con una verifica comunale usando questo set: la circolare richiama l’Allegato 1, ma il PDF dell’allegato fornito è image-only e non è stato verificato con OCR/controllo visivo. Chiedere un allegato testuale leggibile o verificare direttamente la fonte ufficiale.",
+      "gold_sources": [],
+      "key_facts": ["allegato immagine non verificato", "elenco non presente nei testi utilizzati", "astenersi"]
+    },
+    {
+      "id": "abstain_004",
+      "type": "unanswerable",
+      "question": "Quale causale devo selezionare nella domanda INPS per la mia situazione personale?",
+      "reference_answer": "I documenti elencano le causali e i requisiti, ma non descrivono la situazione personale dell’utente. Il sistema deve chiedere i fatti mancanti o rimandare alle istruzioni ufficiali, senza scegliere una causale individuale per supposizione.",
+      "gold_sources": [],
+      "key_facts": ["mancano dettagli del caso", "non inferire causale individuale", "astenersi o chiedere chiarimenti"]
+    }
+  ]
+}
