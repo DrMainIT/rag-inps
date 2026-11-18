@@ -47,7 +47,7 @@ def load_pdf_pages(file_path: str) -> list[Document]:
 
 pdf_dirs = os.listdir("data/pdfs")
 documents = []
-for list_pdfs in pdf_dirs[:500]:
+for list_pdfs in pdf_dirs[:10]:
     pdfs = os.listdir(os.path.join("data/pdfs", list_pdfs))
     for pdf in pdfs:
         try:

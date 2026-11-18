@@ -18,8 +18,8 @@ load_dotenv()
 # ============================================================
 
 model = init_chat_model(
-    "openai/gpt-oss-20b",
-    model_provider="groq",
+    "qwen3:0.6b",
+    model_provider="ollama",
     temperature=0,
     max_tokens=1000,
     max_retries=5,

@@ -5,8 +5,8 @@ import https from "https";
 import http from "http";
 import { mkdir, writeFile } from "fs/promises";
 
-const START_INDEX = 10296;
-const END_INDEX = 14000; // exclusive: downloads indexes 1000 through 13999
+const START_INDEX = 0; // 10296
+const END_INDEX = 20; // exclusive: downloads indexes 1000 through 13999
 const PAGE_CONCURRENCY = 16;
 const DOWNLOAD_CONCURRENCY_PER_PAGE = 3;
 const NAVIGATION_TIMEOUT_MS = 60_000;
@@ -86,13 +86,16 @@ function downloadFile(url, filepath, redirectCount = 0) {
 
 async function runWithConcurrency(items, limit, worker) {
   let nextIndex = 0;
-  const workers = Array.from({ length: Math.min(limit, items.length) }, async () => {
-    while (nextIndex < items.length) {
-      const index = nextIndex;
-      nextIndex += 1;
-      await worker(items[index], index);
-    }
-  });
+  const workers = Array.from(
+    { length: Math.min(limit, items.length) },
+    async () => {
+      while (nextIndex < items.length) {
+        const index = nextIndex;
+        nextIndex += 1;
+        await worker(items[index], index);
+      }
+    },
+  );
 
   await Promise.all(workers);
 }
@@ -109,7 +112,8 @@ async function downloadPdfLinks(sourceUrl, pdfLinks) {
     DOWNLOAD_CONCURRENCY_PER_PAGE,
     async (link, index) => {
       const parsedUrl = new URL(link);
-      const filename = path.basename(parsedUrl.pathname) || `document_${index + 1}.pdf`;
+      const filename =
+        path.basename(parsedUrl.pathname) || `document_${index + 1}.pdf`;
       const filepath = path.join(urlFolder, filename);
 
       if (fs.existsSync(filepath) && fs.statSync(filepath).size > 0) {
@@ -166,13 +170,12 @@ console.log(
 const browser = await puppeteer.launch({
   headless: true,
   dumpio: true,
-  executablePath: "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+  //executablePath: "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+  channel: "chrome",
   enableExtensions: true,
-  args: [
-    "--disable-gpu",
-    "--disable-dev-shm-usage",
-  ],
-});const failures = [];
+  args: ["--disable-gpu", "--disable-dev-shm-usage"],
+});
+const failures = [];
 let completed = 0;
 
 try {
@@ -185,10 +188,18 @@ try {
       page.setDefaultTimeout(NAVIGATION_TIMEOUT_MS);
 
       try {
-        const urlFailures = await processSourceUrl(page, sourceUrl, absoluteIndex);
+        const urlFailures = await processSourceUrl(
+          page,
+          sourceUrl,
+          absoluteIndex,
+        );
         failures.push(...urlFailures);
       } catch (error) {
-        failures.push({ sourceUrl, index: absoluteIndex, error: error.message });
+        failures.push({
+          sourceUrl,
+          index: absoluteIndex,
+          error: error.message,
+        });
         console.error(`[${absoluteIndex}] Failed: ${error.message}`);
       } finally {
         completed += 1;
