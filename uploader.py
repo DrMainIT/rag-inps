@@ -13,10 +13,9 @@ from langchain_huggingface import HuggingFaceEmbeddings
 import pypdf
 load_dotenv()  
 
-#model = init_chat_model("google_genai:gemini-2.5-flash")
-#embeddings = GoogleGenerativeAIEmbeddings(model="models/gemini-embedding-001")
 #embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-mpnet-base-v2")
-embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-mpnet-base-v2")
+embeddings = HuggingFaceEmbeddings(model_name="Qwen/Qwen3-Embedding-0.6B")
+
 vector_store = Chroma(
     collection_name="example_collection",
     embedding_function=embeddings,
@@ -72,20 +71,3 @@ try:
 except Exception as e:
     print(f"Error adding documents: {e}")
     document_ids = []
-
-
-"""
-from google import genai    
-client = genai.Client() # Automatically picks up GOOGLE_API_KEY from your .env
-total_tokens = 0
-
-for doc in all_splits:
-    response = client.models.count_tokens(
-        model="gemini-embedding-001",
-        contents=doc.page_content
-    )
-    total_tokens += response.total_tokens
-print(f"Total exact tokens required for embeddings: {total_tokens}")
-"""
-
-
